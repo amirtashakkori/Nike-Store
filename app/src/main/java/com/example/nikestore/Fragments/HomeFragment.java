@@ -45,40 +45,40 @@ public class HomeFragment extends Fragment {
 
     View view;
     Disposable disposable1 , disposable2;
-    TextView btn_latest_view_all , btn_popular_view_all;
+    TextView latestMoreBtn , popularMoreBtn;
     getProductApi getProductApi;
     getBannerApi getBannerApi;
     CachedDatas cachedDatas;
     com.example.nikestore.ApiServices.ApiCommands.search search;
 
-    EditText edt_search;
+    EditText searchEdt;
     LinearLayout main_page_layout;
     RecyclerView rv_search;
 
     //Slider
     BannerSliderAdapter adapter;
-    ViewPager banner_viewPager;
-    TabLayout tabLayout;
+    ViewPager bannerVp;
+    TabLayout bannerTl;
     Handler h;
     Runnable runnable;
     private int[] pagerIndex = {-1};
 
     //Latest Product
-    RecyclerView rv_latest_product;
+    RecyclerView latestProductsRv;
     ProductAdapter productAdapter;
 
     //Popular Product
-    RecyclerView rv_popular_product;
+    RecyclerView popularProductsRv;
 
 
     public void cast(){
-        banner_viewPager = view.findViewById(R.id.banner_viewPager);
-        tabLayout = view.findViewById(R.id.tabLayout);
-        rv_latest_product = view.findViewById(R.id.rv_latest_product);
-        rv_popular_product = view.findViewById(R.id.rv_popular_product);
-        btn_latest_view_all = view.findViewById(R.id.btn_latest_view_all);
-        btn_popular_view_all = view.findViewById(R.id.btn_popular_view_all);
-        edt_search = view.findViewById(R.id.edt_search);
+        bannerVp = view.findViewById(R.id.bannerVp);
+        bannerTl = view.findViewById(R.id.bannerTl);
+        latestProductsRv = view.findViewById(R.id.latestProductsRv);
+        popularProductsRv = view.findViewById(R.id.popularProductsRv);
+        latestMoreBtn = view.findViewById(R.id.latestMoreBtn);
+        popularMoreBtn = view.findViewById(R.id.popularMoreBtn);
+        searchEdt = view.findViewById(R.id.searchEdt);
         main_page_layout = view.findViewById(R.id.main_page_layout);
         rv_search = view.findViewById(R.id.rv_search);
     }
@@ -92,7 +92,7 @@ public class HomeFragment extends Fragment {
 
         getValues(new ApiService(getActivity()));
 
-        btn_latest_view_all.setOnClickListener(new View.OnClickListener() {
+        latestMoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext() , ProductListActivity.class);
@@ -101,7 +101,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        btn_popular_view_all.setOnClickListener(new View.OnClickListener() {
+        popularMoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext() , ProductListActivity.class);
@@ -110,7 +110,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        edt_search.addTextChangedListener(new TextWatcher() {
+        searchEdt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 if (s.length() > 2){
@@ -154,9 +154,9 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onSuccess(List<Product> products) {
-                rv_latest_product.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , false));
+                latestProductsRv.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , false));
                 productAdapter = new ProductAdapter(getContext() , products , cachedDatas);
-                rv_latest_product.setAdapter(productAdapter);
+                latestProductsRv.setAdapter(productAdapter);
             }
 
             @Override
@@ -173,9 +173,9 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onSuccess(List<Product> products) {
-                rv_popular_product.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , false));
+                popularProductsRv.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , false));
                 productAdapter = new ProductAdapter(getContext() , products , cachedDatas);
-                rv_popular_product.setAdapter(productAdapter);
+                popularProductsRv.setAdapter(productAdapter);
             }
 
             @Override
@@ -194,9 +194,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onSuccess(List<Banner> banners) {
                 adapter = new BannerSliderAdapter(getContext() , banners);
-                banner_viewPager.setAdapter(adapter);
-                tabLayout.setRotationY(180);
-                tabLayout.setupWithViewPager(banner_viewPager);
+                bannerVp.setAdapter(adapter);
+                bannerVp.setPageMargin(16);
+                bannerTl.setRotationY(180);
+                bannerTl.setupWithViewPager(bannerVp);
 
                 h = new Handler();
                 int delay = 10000; //1 second
@@ -207,7 +208,7 @@ public class HomeFragment extends Fragment {
                         if (pagerIndex[0] >= adapter.getCount()) {
                             pagerIndex[0] = 0;
                         }
-                        banner_viewPager.setCurrentItem(pagerIndex[0]);
+                        bannerVp.setCurrentItem(pagerIndex[0]);
                         runnable=this;
                         h.postDelayed(runnable, delay);
                     }
@@ -221,7 +222,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        edt_search.addTextChangedListener(new TextWatcher() {
+        searchEdt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -244,7 +245,7 @@ public class HomeFragment extends Fragment {
                             rv_search.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.VERTICAL , false));
                             productAdapter = new ProductAdapter(getContext() , products , cachedDatas);
                             productAdapter.setViewType(ViewType.LARGE);
-                            rv_latest_product.setAdapter(productAdapter);
+                            latestProductsRv.setAdapter(productAdapter);
                         }
 
                         @Override

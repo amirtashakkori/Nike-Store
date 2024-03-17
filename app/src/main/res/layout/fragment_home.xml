@@ -24,7 +24,7 @@
                 android:layout_gravity="center_horizontal"/>
 
             <EditText
-                android:id="@+id/edt_search"
+                android:id="@+id/searchEdt"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:layout_marginStart="16dp"
@@ -59,13 +59,13 @@
                 android:visibility="visible">
 
                 <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/bannerVp"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:id="@+id/banner_viewPager"
                     android:layout_gravity="center_horizontal"/>
 
                 <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
+                    android:id="@+id/bannerTl"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_centerHorizontal="true"
@@ -89,7 +89,7 @@
                         android:text="@string/latest"/>
 
                     <TextView
-                        android:id="@+id/btn_latest_view_all"
+                        android:id="@+id/latestMoreBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?textAppearanceBody1"
@@ -98,13 +98,13 @@
                         android:text="@string/viewAll"/>
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/latestProductsRv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/btn_latest_view_all"
+                        android:layout_below="@+id/latestMoreBtn"
                         android:layout_marginTop="16dp"
                         android:padding="2dp"
-                        android:clipToPadding="false"
-                        android:id="@+id/rv_latest_product"/>
+                        android:clipToPadding="false" />
 
                 </RelativeLayout>
 
@@ -120,7 +120,7 @@
                         android:text="@string/popular"/>
 
                     <TextView
-                        android:id="@+id/btn_popular_view_all"
+                        android:id="@+id/popularMoreBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?textAppearanceBody1"
@@ -129,13 +129,13 @@
                         android:text="@string/viewAll"/>
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/popularProductsRv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/btn_popular_view_all"
+                        android:layout_below="@+id/popularMoreBtn"
                         android:layout_marginTop="16dp"
                         android:padding="2dp"
-                        android:clipToPadding="false"
-                        android:id="@+id/rv_popular_product"/>
+                        android:clipToPadding="false" />
 
                 </RelativeLayout>
 

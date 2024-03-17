@@ -33,10 +33,10 @@ import io.reactivex.schedulers.Schedulers;
 public class DetailActivity extends AppCompatActivity {
 
     ImageView img_product , btn_back;
-    TextView txt_product_name , txt_product_previous_price , txt_product_current_price , txt_product_title;
-    RecyclerView rv_comment;
-    MaterialButton btn_view_all_comments;
-    ExtendedFloatingActionButton btn_add_to_cart;
+    TextView productTitle , prevPriceTv , currentPriceTv , productHeaderTitle;
+    RecyclerView commentRv;
+    MaterialButton commentsMoreBtn;
+    ExtendedFloatingActionButton addToCartBtn;
 
     List<Comment> commentList;
 
@@ -49,14 +49,14 @@ public class DetailActivity extends AppCompatActivity {
 
     public void cast(){
         img_product = findViewById(R.id.img_product);
-        txt_product_name = findViewById(R.id.txt_product_name);
-        txt_product_previous_price = findViewById(R.id.txt_product_previous_price);
-        txt_product_current_price = findViewById(R.id.txt_product_current_price);
-        txt_product_title = findViewById(R.id.txt_product_title);
-        rv_comment = findViewById(R.id.rv_comment);
-        btn_view_all_comments = findViewById(R.id.btn_view_all_comments);
+        productTitle = findViewById(R.id.productTitle);
+        prevPriceTv = findViewById(R.id.prevPriceTv);
+        currentPriceTv = findViewById(R.id.currentPriceTv);
+        productHeaderTitle = findViewById(R.id.productHeaderTitle);
+        commentRv = findViewById(R.id.commentRv);
+        commentsMoreBtn = findViewById(R.id.commentsMoreBtn);
         btn_back = findViewById(R.id.btn_back);
-        btn_add_to_cart = findViewById(R.id.btn_add);
+        addToCartBtn = findViewById(R.id.addToCartBtn);
     }
 
     @Override
@@ -72,11 +72,11 @@ public class DetailActivity extends AppCompatActivity {
         if (bundle!=null){
             product = bundle.getParcelable("product");
             Picasso.get().load(product.getImage()).into(img_product);
-            txt_product_name.setText(product.getTitle());
-            txt_product_title.setText(product.getTitle());
+            productTitle.setText(product.getTitle());
+            productHeaderTitle.setText(product.getTitle());
             DecimalFormat decimalFormat = new DecimalFormat("0,000");
-            txt_product_previous_price.setText(decimalFormat.format(product.getPrevious_price()) + " تومان");
-            txt_product_current_price.setText(decimalFormat.format(product.getPrice()) + " تومان");
+            prevPriceTv.setText(decimalFormat.format(product.getPrevious_price()) + " تومان");
+            currentPriceTv.setText(decimalFormat.format(product.getPrice()) + " تومان");
         }
 
         apiService.getComments(product).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new SingleObserver<List<Comment>>() {
@@ -88,13 +88,13 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<Comment> comments) {
                 commentList = comments;
-                rv_comment.setLayoutManager(new GridLayoutManager(DetailActivity.this , 1 , RecyclerView.HORIZONTAL , false));
-                rv_comment.setAdapter(new CommentAdapter(DetailActivity.this , comments));
+                commentRv.setLayoutManager(new GridLayoutManager(DetailActivity.this , 1 , RecyclerView.HORIZONTAL , false));
+                commentRv.setAdapter(new CommentAdapter(DetailActivity.this , comments));
                 if (comments.size() > 3)
-                    btn_view_all_comments.setVisibility(View.VISIBLE);
+                    commentsMoreBtn.setVisibility(View.VISIBLE);
 
                 else
-                    btn_view_all_comments.setVisibility(View.GONE);
+                    commentsMoreBtn.setVisibility(View.GONE);
             }
 
             @Override
@@ -104,7 +104,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-        btn_view_all_comments.setOnClickListener(new View.OnClickListener() {
+        commentsMoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailActivity.this , CommentActivity.class);
@@ -120,7 +120,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-        btn_add_to_cart.setOnClickListener(new View.OnClickListener() {
+        addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 apiService.addToCart("Bearer " + tokenContainer.getToken() , product.getId()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new SingleObserver<AddToCartResponse>() {
