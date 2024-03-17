@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layoutDirection="rtl"
+    android:padding="16dp"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/bg_cart_item">
+
+    <RelativeLayout
+        android:id="@+id/info_lay"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/img_product_layout"
+            app:cardCornerRadius="12dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/img_product"
+                android:scaleType="centerCrop"
+                android:layout_alignParentRight="true"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/img_product_layout"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/txt_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textSize="14sp"
+                android:textAppearance="?textAppearanceBody1"
+                android:text="نام محصول"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/txt_current_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textAppearance="?textAppearanceBody1"
+                tools:text="14000"
+                android:textColor="@color/green"/>
+
+            <LinearLayout
+                android:id="@+id/count_lay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/textView2">
+
+                <ImageView
+                    android:id="@+id/btn_increase_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/ic_increase_cart_item_count" />
+
+                <TextView
+                    android:id="@+id/txt_item_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="@color/black"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    tools:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/btn_decrease_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/ic_decrease_cart_item_count" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/btn_remove_from_cart"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@drawable/bg_remove_from_cart"
+        android:gravity="center"
+        android:textAppearance="?textAppearanceBody1"
+        android:text="@string/removeFromCart"
+        android:textColor="@color/red"
+
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/info_lay" />
+
+</RelativeLayout>

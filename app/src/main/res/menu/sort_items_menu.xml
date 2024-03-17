@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/sort_latest" android:title="@string/sortLatest" />
+    <item android:id="@+id/sort_popular" android:title="@string/sortPopular"/>
+    <item android:id="@+id/sort_desc" android:title="@string/sortPriceHighToLow"/>
+    <item android:id="@+id/sort_asc" android:title="@string/sortPriceLowToHigh"/>
+</menu>

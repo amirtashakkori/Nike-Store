@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="12dp"
+    android:layout_marginEnd="16dp"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/img_product_layout"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:cardCornerRadius="12dp"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/btn_add_favorite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_favorites"
+            android:elevation="2dp"/>
+
+        <ImageView
+            android:id="@+id/img_product"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            tools:srcCompat="@tools:sample/avatars"
+            android:scaleType="centerCrop"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/txt_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="?textAppearanceBody1"
+        android:layout_below="@+id/img_product_layout"
+        android:layout_centerHorizontal="true"
+        tools:text="Product Name" />
+
+    <LinearLayout
+        android:id="@+id/wehave"
+        android:layout_below="@id/txt_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_check_box"
+            android:layout_gravity="center_vertical"
+            app:tint="@color/blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?textAppearanceBody2"
+            android:text="موجود در انبار"
+            android:layout_marginRight="4dp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/txt_product_previous_price_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_below="@id/wehave"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/txt_product_previous_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/red"
+            tools:text="TextView" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="1dp"
+            android:background="@color/red"
+            android:layout_gravity="center_vertical"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/txt_product_current_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textAppearance="?textAppearanceBody1"
+        android:text="TextView"
+        android:textColor="@color/green"
+        android:layout_below="@id/txt_product_previous_price_layout"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintStart_toStartOf="@+id/txt_product_previous_price_layout"
+        app:layout_constraintTop_toBottomOf="@+id/txt_product_previous_price_layout" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="?dividerColor"
+        android:layout_below="@+id/txt_product_current_price" />
+</RelativeLayout>

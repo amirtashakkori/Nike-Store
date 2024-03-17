@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.HomeFragment"
+    android:layoutDirection="rtl"
+    android:background="@color/white">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:src="@drawable/ic_nike_logo"
+                android:layout_gravity="center_horizontal"/>
+
+            <EditText
+                android:id="@+id/edt_search"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_ed_search"
+                android:hint="جستجو"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:drawableRight="@drawable/ic_search"
+                android:textColor="?colorOnSurface"
+                android:textColorHint="?android:textColorSecondary"
+                android:textSize="15sp"
+                android:maxLines="1"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="16dp"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/rv_search"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/main_page_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingRight="16dp"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:visibility="visible">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:id="@+id/banner_viewPager"
+                    android:layout_gravity="center_horizontal"/>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/white"
+                    android:layout_gravity="center_horizontal"
+                    app:tabBackground="@drawable/bg_slider_tabs"
+                    app:tabGravity="center"
+                    android:layout_marginTop="16dp"
+                    app:tabIndicatorHeight="0dp" />
+
+                <RelativeLayout
+                    android:id="@+id/latest_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?textAppearanceBody1"
+                        android:textColor="@color/black"
+                        android:text="@string/latest"/>
+
+                    <TextView
+                        android:id="@+id/btn_latest_view_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?textAppearanceBody1"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/blue"
+                        android:text="@string/viewAll"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/btn_latest_view_all"
+                        android:layout_marginTop="16dp"
+                        android:padding="2dp"
+                        android:clipToPadding="false"
+                        android:id="@+id/rv_latest_product"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?textAppearanceBody1"
+                        android:textColor="@color/black"
+                        android:text="@string/popular"/>
+
+                    <TextView
+                        android:id="@+id/btn_popular_view_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?textAppearanceBody1"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/blue"
+                        android:text="@string/viewAll"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/btn_popular_view_all"
+                        android:layout_marginTop="16dp"
+                        android:padding="2dp"
+                        android:clipToPadding="false"
+                        android:id="@+id/rv_popular_product"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

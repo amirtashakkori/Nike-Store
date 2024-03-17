@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">NikeStore</string>
+    <string name="home">خانه</string>
+    <string name="cart">سبد خرید</string>
+    <string name="profile">اطلاعات کاربری</string>
+    <string name="latest">جدیدترین ها</string>
+    <string name="popular">پربازدیدترین ها</string>
+    <string name="viewAll">مشاهده همه</string>
+    <string name="comments">نظرات کاربران</string>
+    <string name="insertComment">ثبت نظر</string>
+    <string name="viewAllComments">نمایش تمام نظرات</string>
+    <string name="productList">لیست محصولات</string>
+    <string name="sortBy">مرتب سازی بر اساس :</string>
+    <string name="sortLatest">جدیدترین</string>
+    <string name="sortPopular">پر بازدیدترین</string>
+    <string name="sortPriceHighToLow">گرانترین</string>
+    <string name="sortPriceLowToHigh">ارزانترین</string>
+    <string name="addToCart">افزودن به سبد خرید</string>
+
+    //SignUp and Login
+    <string name="loginScreenTitle">ورود به حساب کاربری</string>
+    <string name="loginTitle">ورود</string>
+    <string name="email">ایمیل</string>
+    <string name="password">رمز عبور</string>
+    <string name="signUpHint">حساب کاربری ندارید؟</string>
+    <string name="signUp">ثبت نام</string>
+    <string name="authHint">ایمیل و رمز عبور خود را وارد کنید</string>
+    <string name="signUpScreenTitle">ایجاد حساب کاربری</string>
+    <string name="loginHint">قبلا ثبت نام کردید؟</string>
+    <string name="Login">ورود به صفحه کاربری</string>
+
+    //Cart
+    <string name="pay">پرداخت</string>
+    <string name="count">تعداد</string>
+    <string name="removeFromCart">حذف از سبد خرید</string>
+    <string name="purchaseDetail">جزییات خرید</string>
+    <string name="totalPrice">مبلغ کل خرید</string>
+    <string name="shippingCost">هزینه ارسال</string>
+    <string name="payablePrice">مبلغ قابل پرداخت</string>
+
+    //PaymentActivity
+    <string name="paymentAndShiping">انتخاب تحویل گیرنده و شیوه پرداخت</string>
+    <string name="name">نام</string>
+    <string name="family">نام خانوادگی</string>
+    <string name="postalCode">کد پستی</string>
+    <string name="phone">شماره تماس</string>
+    <string name="address">آدرس تحویل گیرنده</string>
+    <string name="cashOnDelivery">پرداخت در محل</string>
+    <string name="onlinePayment">پرداخت آنلاین</string>
+
+    //PaymentResultActivity
+    <string name="Receipt">رسید پرداخت</string>
+    <string name="purchaseSuccessful">پرداخت با موفقیت انجام شد!</string>
+    <string name="price">مبلغ پرداختی :</string>
+    <string name="deliveryStatus">وضعیت تحویل :</string>
+    <string name="deliveryTime">زمان تحویل :</string>
+    <string name="payerName">آقا / خانوم :</string>
+
+    <string name="backToHome">برگشت به صفحه اصلی</string>
+    <string name="purchaseHistory">سوابق سفارشات</string>
+    <string name="paymentGateaway">درگاه پرداخت</string>
+
+    //Profile Fragment
+    <string name="favoriteList">لیست علاقمندی ها</string>
+    <string name="logOut">خروج از حساب کاربری</string>
+    <string name="youShouldLogin">برای استفاده ازین بخش باید وارد حساب کاربری خود شوید!</string>
+
+</resources>
