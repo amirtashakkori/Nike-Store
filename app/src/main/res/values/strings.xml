@@ -16,6 +16,19 @@
     <string name="sortPriceHighToLow">گرانترین</string>
     <string name="sortPriceLowToHigh">ارزانترین</string>
     <string name="addToCart">افزودن به سبد خرید</string>
+    <string name="productDesc">این کتونی شدیدا برای دویدن و راه رفتن مناسب هست و تقریبا هیچ فشار مخربی رو نمیذارد به پا و زانوان شما انتقال داده شود
+همچنین عجیب به پاهای شما مینشیند و علاوه بر زیبایی و استایلی که به هر تیپ شما میدهد باعث نفس کشیدن پاهای شما نیز میشود
+از نظر موندگاری هم جنس فوق العاده ای داره ، من خودم دوساله میپوشم و هنوز آخ نگفته
+!</string>
+
+    //Product Detail
+    <string name="commentTitle">عنوان نظر</string>
+    <string name="commentContent">متن نظر</string>
+    <string name="submitComment">ثبت نظر</string>
+
+    <string name="commentSubmitted">نظر شما با موفقیت ثبت شد</string>
+    <string name="commentSubmittedError">ثبت نظر شما با مشکل مواجه شد</string>
+    <string name="youShouldLoginComment">برای ثبت نظر باید وارد حساب کاربری خود شوید!</string>
 
     //SignUp and Login
     <string name="loginScreenTitle">ورود به حساب کاربری</string>
@@ -62,6 +75,7 @@
 
     //Profile Fragment
     <string name="favoriteList">لیست علاقمندی ها</string>
+    <string name="orderHistory">سوابق سفارش</string>
     <string name="logOut">خروج از حساب کاربری</string>
     <string name="youShouldLogin">برای استفاده ازین بخش باید وارد حساب کاربری خود شوید!</string>
 

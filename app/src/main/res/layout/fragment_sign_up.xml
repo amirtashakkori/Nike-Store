@@ -41,7 +41,10 @@
             android:inputType="textEmailAddress"
             android:textColor="@color/black"
             android:textColorHint="@color/darkGray"
-            style="@style/Theme.Nike.AuthTheme.EditText"
+            android:background="@drawable/bg_auth_edt"
+            android:minHeight="48dp"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
             android:hint="@string/email"/>
 
         <EditText
@@ -53,7 +56,10 @@
             android:inputType="textPassword"
             android:textColor="@color/black"
             android:textColorHint="@color/darkGray"
-            style="@style/Theme.Nike.AuthTheme.EditText"
+            android:background="@drawable/bg_auth_edt"
+            android:minHeight="48dp"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
             android:hint="@string/password" />
 
         <com.google.android.material.button.MaterialButton

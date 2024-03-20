@@ -4,20 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nikestore.Adapters.CommentAdapter;
 import com.example.nikestore.ApiServices.ApiService;
+import com.example.nikestore.Model.AddCommentResponse;
 import com.example.nikestore.Model.AddToCartResponse;
 import com.example.nikestore.Model.Comment;
 import com.example.nikestore.Model.Product;
 import com.example.nikestore.SharedPreferences.TokenContainer;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.squareup.picasso.Picasso;
@@ -32,8 +38,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class DetailActivity extends AppCompatActivity {
 
-    ImageView img_product , btn_back;
-    TextView productTitle , prevPriceTv , currentPriceTv , productHeaderTitle;
+    ImageView productImg , backBtn , favoriteBtn;
+    TextView productTitle , prevPriceTv , currentPriceTv , leaveCommentBtn;
     RecyclerView commentRv;
     MaterialButton commentsMoreBtn;
     ExtendedFloatingActionButton addToCartBtn;
@@ -48,15 +54,16 @@ public class DetailActivity extends AppCompatActivity {
     Bundle bundle;
 
     public void cast(){
-        img_product = findViewById(R.id.img_product);
+        productImg = findViewById(R.id.productImg);
         productTitle = findViewById(R.id.productTitle);
         prevPriceTv = findViewById(R.id.prevPriceTv);
         currentPriceTv = findViewById(R.id.currentPriceTv);
-        productHeaderTitle = findViewById(R.id.productHeaderTitle);
         commentRv = findViewById(R.id.commentRv);
         commentsMoreBtn = findViewById(R.id.commentsMoreBtn);
-        btn_back = findViewById(R.id.btn_back);
+        backBtn = findViewById(R.id.backBtn);
+        favoriteBtn = findViewById(R.id.favoriteBtn);
         addToCartBtn = findViewById(R.id.addToCartBtn);
+        leaveCommentBtn = findViewById(R.id.leaveCommentBtn);
     }
 
     @Override
@@ -71,9 +78,8 @@ public class DetailActivity extends AppCompatActivity {
 
         if (bundle!=null){
             product = bundle.getParcelable("product");
-            Picasso.get().load(product.getImage()).into(img_product);
+            Picasso.get().load(product.getImage()).into(productImg);
             productTitle.setText(product.getTitle());
-            productHeaderTitle.setText(product.getTitle());
             DecimalFormat decimalFormat = new DecimalFormat("0,000");
             prevPriceTv.setText(decimalFormat.format(product.getPrevious_price()) + " تومان");
             currentPriceTv.setText(decimalFormat.format(product.getPrice()) + " تومان");
@@ -113,7 +119,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-        btn_back.setOnClickListener(new View.OnClickListener() {
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -140,6 +146,48 @@ public class DetailActivity extends AppCompatActivity {
                         Log.i("addToCart", "onError: " + e);
                     }
                 });
+            }
+        });
+
+        leaveCommentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialog commentDialog = new BottomSheetDialog(DetailActivity.this ,R.style.Bottomsheet_EBook_final);
+                View view = LayoutInflater.from(DetailActivity.this).inflate(R.layout.dialog_add_comment , (LinearLayout)findViewById(R.id.parent) , false);
+
+                EditText commentTitleEdt = view.findViewById(R.id.commentTitleEdt);
+                EditText commentContentEdt = view.findViewById(R.id.commentContentEdt);
+                MaterialButton submitBtn = view.findViewById(R.id.submitBtn);
+
+                submitBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        apiService.leaveComments("Bearer " + tokenContainer.getToken() , product , commentTitleEdt.getText().toString() , commentContentEdt.getText().toString()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new SingleObserver<AddCommentResponse>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+                                
+                            }
+
+                            @Override
+                            public void onSuccess(AddCommentResponse commentResponse) {
+                                if (!tokenContainer.getToken().isEmpty())
+                                    Toast.makeText(DetailActivity.this, "" + getString(R.string.commentSubmitted), Toast.LENGTH_SHORT).show();
+                                else
+                                    Toast.makeText(DetailActivity.this, "" + getString(R.string.commentSubmittedError), Toast.LENGTH_SHORT).show();
+                                commentDialog.dismiss();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Toast.makeText(DetailActivity.this, "Submitting your comment failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DetailActivity.this, "" + e, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
+                commentDialog.setContentView(view);
+                commentDialog.show();
             }
         });
 

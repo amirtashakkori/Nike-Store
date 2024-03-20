@@ -42,4 +42,15 @@
         <item name="colorOnSurface">@color/white</item>
         <item name="materialButtonStyle">@style/Theme.Nike.AuthTheme.Button</item>
     </style>
+
+    <style name="Bottomsheet_EBook" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="elevation">8dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+    <style name="Bottomsheet_EBook_final" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Bottomsheet_EBook</item>
+    </style>
+
 </resources>

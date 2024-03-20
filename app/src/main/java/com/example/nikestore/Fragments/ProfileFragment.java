@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,23 +24,23 @@ public class ProfileFragment extends Fragment {
     View view;
     TokenContainer tokenContainer;
     String token , refresh_token;
-    MaterialButton btn_login;
+    Button loginBtn;
 
-    TextView txt_empty_state , txt_email;
-    RelativeLayout btn_favorite_List , btn_purchase_history , btn_logOut;
-    LinearLayout cart_item_layout , animation_layout;
-    LottieAnimationView lottie;
+    TextView emptyStateTv , emailTv;
+    LinearLayout favoriteProductsBtn , ordersHistoryBtn , logOutBtn;
+    LinearLayout cart_item_layout , illLayout;
+    ImageView illImage;
 
     public void cast(){
-        btn_favorite_List = view.findViewById(R.id.btn_favorite_List);
-        btn_purchase_history = view.findViewById(R.id.btn_purchase_history);
-        btn_logOut = view.findViewById(R.id.btn_logOut);
+        favoriteProductsBtn = view.findViewById(R.id.favoriteProductsBtn);
+        ordersHistoryBtn = view.findViewById(R.id.ordersHistoryBtn);
+        logOutBtn = view.findViewById(R.id.logOutBtn);
         cart_item_layout = view.findViewById(R.id.cart_item_layout);
-        animation_layout = view.findViewById(R.id.animation_layout);
-        lottie = view.findViewById(R.id.lottie);
-        txt_empty_state = view.findViewById(R.id.txt_empty_state);
-        btn_login = view.findViewById(R.id.btn_login);
-        txt_email = view.findViewById(R.id.txt_email);
+        illLayout = view.findViewById(R.id.illLayout);
+        illImage = view.findViewById(R.id.illImage);
+        emptyStateTv = view.findViewById(R.id.emptyStateTv);
+        loginBtn = view.findViewById(R.id.loginBtn);
+        emailTv = view.findViewById(R.id.emailTv);
     }
 
     @Override
@@ -48,7 +50,7 @@ public class ProfileFragment extends Fragment {
 
         cast();
         tokenContainer = new TokenContainer(getContext());
-        txt_email.setText(tokenContainer.getEmail());
+        emailTv.setText(tokenContainer.getEmail());
         token = "Bearer " + tokenContainer.getToken();
         refresh_token = "Bearer " + tokenContainer.getRefreshToken();
 
@@ -56,7 +58,7 @@ public class ProfileFragment extends Fragment {
             Authorize(token , refresh_token);
         }
 
-        btn_logOut.setOnClickListener(new View.OnClickListener() {
+        logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tokenContainer.seveTokens("" , "");
@@ -66,19 +68,23 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        favoriteProductsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         return view;
     }
 
     public void Authorize(String token , String refresh_token){
         if (token.equals("Bearer ") && refresh_token.equals("Bearer ")){
             cart_item_layout.setVisibility(View.GONE);
-            animation_layout.setVisibility(View.VISIBLE);
-            lottie.setAnimation(R.raw.login_anim);
-            lottie.playAnimation();
-            lottie.loop(true);
-            txt_empty_state.setText(R.string.youShouldLogin);
-            btn_login.setVisibility(View.VISIBLE);
-            btn_login.setOnClickListener(new View.OnClickListener() {
+            illLayout.setVisibility(View.VISIBLE);
+            emptyStateTv.setText(R.string.youShouldLogin);
+            loginBtn.setVisibility(View.VISIBLE);
+            loginBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();

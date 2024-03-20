@@ -41,14 +41,14 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_margin="16dp"
         android:id="@+id/rv_comments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+        android:paddingBottom="16dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_insert_comment"
+        android:id="@+id/leaveCommentBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -57,6 +57,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:fabSize="normal"
+        android:tint="@color/white"
         app:srcCompat="@drawable/ic_insert_comment" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,5 +1,6 @@
 package com.example.nikestore.ApiServices;
 
+import com.example.nikestore.Model.AddCommentResponse;
 import com.example.nikestore.Model.AddToCartResponse;
 import com.example.nikestore.Model.Banner;
 import com.example.nikestore.Model.BilingResponse;
@@ -31,6 +32,9 @@ public interface RetrofitApiClass {
 
     @GET("comment/list")
     Single<List<Comment>> getComments(@Query("product_id") int productId);
+
+    @POST("comment/add")
+    Single<AddCommentResponse> leaveComment(@Header("Authorization") String token , @Body JsonObject jsonObject);
 
     @POST("auth/token")
     Single<TokenResponse> login(@Body JsonObject jsonObject);

@@ -11,8 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.nikestore.DataBase.ProductDataBase;
-import com.example.nikestore.DataBase.ProductDataBaseClass;
 import com.example.nikestore.DetailActivity;
 import com.example.nikestore.Model.Product;
 import com.example.nikestore.R;

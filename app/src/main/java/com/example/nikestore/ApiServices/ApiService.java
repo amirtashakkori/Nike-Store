@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.example.nikestore.Model.AddCommentResponse;
 import com.example.nikestore.Model.AddToCartResponse;
 import com.example.nikestore.Model.Banner;
 import com.example.nikestore.Model.BilingResponse;
@@ -90,6 +91,14 @@ public class ApiService {
 
     public Single<List<Comment>> getComments(Product product){
         return retrofitApiClass.getComments(product.getId());
+    }
+
+    public Single<AddCommentResponse> leaveComments(String token , Product product , String commentTitle , String commentContent){
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("product_id" , product.id);
+        jsonObject.addProperty("title" , commentTitle);
+        jsonObject.addProperty("content" , commentContent);
+        return retrofitApiClass.leaveComment(token , jsonObject);
     }
 
     public Single<TokenResponse> login(String username , String password){

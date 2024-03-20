@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "products")
+@Entity(tableName = "tbl_products")
 public class Product implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     public int id;
