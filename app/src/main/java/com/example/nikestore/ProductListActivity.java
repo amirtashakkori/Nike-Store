@@ -156,7 +156,7 @@ public class ProductListActivity extends AppCompatActivity {
             public void onSuccess(List<Product> products) {
                 gridLayoutManager = new GridLayoutManager(ProductListActivity.this , 2 , RecyclerView.VERTICAL , false);
                 rv_product.setLayoutManager(gridLayoutManager);
-                adapter = new ProductAdapter(ProductListActivity.this , products , cachedDatas);
+                adapter = new ProductAdapter(ProductListActivity.this , products , ViewType.GRIDE);
                 rv_product.setAdapter(adapter);
             }
 

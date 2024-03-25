@@ -7,10 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.nikestore.DataBase.ProductDataBase;
+import com.example.nikestore.DataBase.ProductDataBaseClass;
 import com.example.nikestore.DetailActivity;
 import com.example.nikestore.Model.Product;
 import com.example.nikestore.R;
@@ -29,17 +32,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.item> {
 
     CachedDatas cachedDatas;
 
-    public ViewType viewType = ViewType.GRIDE;
+    public ViewType viewType;
 
-    public ProductAdapter(Context c, List<Product> productList , CachedDatas cachedDatas) {
+    public ProductAdapter(Context c, List<Product> productList , ViewType viewType) {
         this.c = c;
         this.productList = productList;
-        this.cachedDatas = cachedDatas;
-    }
-
-    public ProductAdapter(Context c, List<Product> productList) {
-        this.c = c;
-        this.productList = productList;
+        this.viewType = viewType;
     }
 
     @NonNull
@@ -69,48 +67,42 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.item> {
     }
 
     public class item extends RecyclerView.ViewHolder{
-        ImageView img_product , btn_add_favorite;
-        TextView txt_product_name , txt_product_previous_price ,txt_product_current_price;
+        ImageView productImg , addToFavoritesBtn;
+        TextView productTitleTv , prevCostTv ,currentCostTv;
         public item(@NonNull View itemView) {
             super(itemView);
-            img_product = itemView.findViewById(R.id.img_product);
-            txt_product_name = itemView.findViewById(R.id.txt_product_name);
-            txt_product_previous_price = itemView.findViewById(R.id.txt_product_previous_price);
-            txt_product_current_price = itemView.findViewById(R.id.txt_product_current_price);
-            btn_add_favorite = itemView.findViewById(R.id.btn_add_favorite);
+            productImg = itemView.findViewById(R.id.productImg);
+            productTitleTv = itemView.findViewById(R.id.productTitleTv);
+            prevCostTv = itemView.findViewById(R.id.prevCostTv);
+            currentCostTv = itemView.findViewById(R.id.currentCostTv);
+            addToFavoritesBtn = itemView.findViewById(R.id.addToFavoritesBtn);
         }
 
         public void bindProduct(Product product){
-            Picasso.get().load(product.getImage()).into(img_product);
-            txt_product_name.setText(product.getTitle());
-            DecimalFormat decimalFormat = new DecimalFormat("0,000");
-            txt_product_previous_price.setText(decimalFormat.format(product.getPrevious_price())+" تومان");
-            txt_product_current_price.setText(decimalFormat.format(product.getPrice())+" تومان");
+            Picasso.get().load(product.getImage()).into(productImg);
+            productTitleTv.setText(product.getTitle());
+            prevCostTv.setText(product.getPrevious_price());
+            currentCostTv.setText(product.getPrice());
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            if (product.isFavorite())
+                addToFavoritesBtn.setImageResource(R.drawable.ic_favorite_full);
+            else
+                addToFavoritesBtn.setImageResource(R.drawable.ic_favorites);
+
+            addToFavoritesBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(c , DetailActivity.class);
-                    intent.putExtra("product" , product);
-                    c.startActivity(intent);
-                }
-            });
-
-
-            dao = ProductDataBaseClass.getAppDataBase(c).getDataBaseDao();
-            btn_add_favorite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (product.isFavorite()==false){
-                        btn_add_favorite.setImageResource(R.drawable.ic_favorite_full);
+                    if (product.isFavorite()){
+                        addToFavoritesBtn.setImageResource(R.drawable.ic_favorites);
                         product.setFavorite(true);
-
-                        dao.addToList(product);
-                    }
-                    else {
-                        btn_add_favorite.setImageResource(R.drawable.ic_favorites);
-                        product.setFavorite(false);
-                        dao.delete(product);
+                        long id = dao.addToList(product);
+                        if (id > -1)
+                            Toast.makeText(c, "به لیست علاقمندی افزوده شد", Toast.LENGTH_SHORT).show();
+                    } else {
+                        addToFavoritesBtn.setImageResource(R.drawable.ic_favorite_full);
+                        int delete = dao.delete(product);
+                        if (delete > 0)
+                            Toast.makeText(c, "از لیست علاقمندی ها خذف شد", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

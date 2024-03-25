@@ -23,7 +23,7 @@
             android:layout_gravity="center_horizontal">
 
             <ImageView
-                android:id="@+id/img_product"
+                android:id="@+id/productImg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -32,7 +32,7 @@
 
             <ImageView
                 android:elevation="2dp"
-                android:id="@+id/btn_add_favorite"
+                android:id="@+id/addToFavoritesBtn"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
@@ -47,7 +47,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/txt_product_name"
+        android:id="@+id/productTitleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -64,7 +64,7 @@
 
     <LinearLayout
         android:id="@+id/wehave"
-        android:layout_below="@id/txt_product_name"
+        android:layout_below="@id/productTitleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -99,7 +99,7 @@
         android:layout_marginRight="8dp">
 
         <TextView
-            android:id="@+id/txt_product_previous_price"
+            android:id="@+id/prevCostTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?textAppearanceBody2"
@@ -116,7 +116,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/txt_product_current_price"
+        android:id="@+id/currentCostTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"

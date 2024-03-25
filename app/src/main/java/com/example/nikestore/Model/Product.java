@@ -6,9 +6,9 @@ import android.os.Parcelable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "tbl_products")
+@Entity(tableName = "products")
 public class Product implements Parcelable {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true )
     public int id;
     public String image;
     public String title;

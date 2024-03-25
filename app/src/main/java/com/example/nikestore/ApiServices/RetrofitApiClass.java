@@ -9,6 +9,8 @@ import com.example.nikestore.Model.CartResponse;
 import com.example.nikestore.Model.CheckoutResponse;
 import com.example.nikestore.Model.Comment;
 import com.example.nikestore.Model.MessageResponse;
+import com.example.nikestore.Model.OrderItem;
+import com.example.nikestore.Model.OrderItemList;
 import com.example.nikestore.Model.Product;
 import com.example.nikestore.Model.TokenResponse;
 import com.google.gson.JsonObject;
@@ -35,6 +37,9 @@ public interface RetrofitApiClass {
 
     @POST("comment/add")
     Single<AddCommentResponse> leaveComment(@Header("Authorization") String token , @Body JsonObject jsonObject);
+
+    @POST("order/list")
+    Single<OrderItemList> getOrderList(@Header("Authorization") String token);
 
     @POST("auth/token")
     Single<TokenResponse> login(@Body JsonObject jsonObject);

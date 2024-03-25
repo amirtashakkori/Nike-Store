@@ -155,7 +155,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onSuccess(List<Product> products) {
                 latestProductsRv.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , false));
-                productAdapter = new ProductAdapter(getContext() , products , cachedDatas);
+                productAdapter = new ProductAdapter(getContext() , products , ViewType.GRIDE);
                 latestProductsRv.setAdapter(productAdapter);
             }
 
@@ -174,7 +174,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onSuccess(List<Product> products) {
                 popularProductsRv.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , false));
-                productAdapter = new ProductAdapter(getContext() , products , cachedDatas);
+                productAdapter = new ProductAdapter(getContext() , products , ViewType.GRIDE);
                 popularProductsRv.setAdapter(productAdapter);
             }
 
@@ -243,7 +243,7 @@ public class HomeFragment extends Fragment {
                             main_page_layout.setVisibility(View.GONE);
                             rv_search.setVisibility(View.VISIBLE);
                             rv_search.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.VERTICAL , false));
-                            productAdapter = new ProductAdapter(getContext() , products , cachedDatas);
+                            productAdapter = new ProductAdapter(getContext() , products , ViewType.GRIDE);
                             productAdapter.setViewType(ViewType.LARGE);
                             latestProductsRv.setAdapter(productAdapter);
                         }

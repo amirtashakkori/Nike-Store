@@ -15,7 +15,7 @@
         app:cardCornerRadius="12dp">
 
         <ImageView
-            android:id="@+id/btn_add_favorite"
+            android:id="@+id/addToFavoritesBtn"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="8dp"
@@ -25,9 +25,9 @@
             app:srcCompat="@drawable/ic_favorites" />
 
         <ImageView
+            android:id="@+id/productImg"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:id="@+id/img_product"
             android:scaleType="centerCrop"
             android:layout_alignParentRight="true"/>
 
@@ -42,7 +42,7 @@
         android:layout_toLeftOf="@+id/img_product_layout">
 
         <TextView
-            android:id="@+id/txt_product_name"
+            android:id="@+id/productTitleTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -53,7 +53,7 @@
 
         <LinearLayout
             android:id="@+id/wehave"
-            android:layout_below="@id/txt_product_name"
+            android:layout_below="@id/productTitleTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -78,12 +78,12 @@
         </LinearLayout>
 
         <FrameLayout
-            android:id="@+id/txt_product_previous_price_layout"
+            android:id="@+id/prevCostTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="@+id/txt_product_name"
-            app:layout_constraintTop_toBottomOf="@+id/txt_product_name"
+            app:layout_constraintStart_toStartOf="@+id/productTitleTv"
+            app:layout_constraintTop_toBottomOf="@+id/productTitleTv"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/wehave">
 
@@ -105,7 +105,7 @@
 
 
         <TextView
-            android:id="@+id/txt_product_current_price"
+            android:id="@+id/currentCostTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
@@ -113,7 +113,7 @@
             android:textColor="@color/green"
             android:text="TextView"
             android:layout_alignParentLeft="true"
-            android:layout_below="@id/txt_product_previous_price_layout"/>
+            android:layout_below="@id/prevCostTv"/>
 
     </RelativeLayout>
 

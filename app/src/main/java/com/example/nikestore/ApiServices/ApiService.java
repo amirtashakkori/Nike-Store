@@ -13,6 +13,8 @@ import com.example.nikestore.Model.CartResponse;
 import com.example.nikestore.Model.CheckoutResponse;
 import com.example.nikestore.Model.Comment;
 import com.example.nikestore.Model.MessageResponse;
+import com.example.nikestore.Model.OrderItem;
+import com.example.nikestore.Model.OrderItemList;
 import com.example.nikestore.Model.Product;
 import com.example.nikestore.Model.TokenResponse;
 import com.example.nikestore.SharedPreferences.TokenContainer;
@@ -99,6 +101,10 @@ public class ApiService {
         jsonObject.addProperty("title" , commentTitle);
         jsonObject.addProperty("content" , commentContent);
         return retrofitApiClass.leaveComment(token , jsonObject);
+    }
+
+    public Single<OrderItemList> getOrderList(String token){
+        return retrofitApiClass.getOrderList(token);
     }
 
     public Single<TokenResponse> login(String username , String password){

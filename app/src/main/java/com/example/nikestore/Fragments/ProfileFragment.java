@@ -1,5 +1,6 @@
 package com.example.nikestore.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.nikestore.R;
+import com.example.nikestore.SettingPageActivity;
 import com.example.nikestore.SharedPreferences.TokenContainer;
 import com.google.android.material.button.MaterialButton;
 
@@ -71,7 +73,9 @@ public class ProfileFragment extends Fragment {
         favoriteProductsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity() , SettingPageActivity.class);
+                intent.putExtra("settingPage" , 0);
+                startActivity(intent);
             }
         });
 
