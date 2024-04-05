@@ -70,8 +70,7 @@ public class LoginFragment extends Fragment {
 
                         @Override
                         public void onError(Throwable e) {
-                            Toast.makeText(getContext(), "" + e, Toast.LENGTH_SHORT).show();
-                            Log.i("logIn", "onError: " + e);
+                            Toast.makeText(getContext(), "مشکلی حین بارگزاری پیش آماده است، دسترسی به اینترنت را چک کنید!" , Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

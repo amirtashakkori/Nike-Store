@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class PaymentActivity extends AppCompatActivity {
     TextInputEditText edt_name , edt_family , edt_postal_code , edt_phone , edt_address;
     TextView txt_total_price , txt_shiping_cost , txt_payable_price;
     MaterialButton btn_cash_on_delivery , btn_online_payment;
+    ImageView btn_back;
 
     submitOrder submitOrder;
     PaymentInfo paymentInfo;
@@ -45,6 +47,7 @@ public class PaymentActivity extends AppCompatActivity {
         txt_payable_price = findViewById(R.id.txt_payable_price);
         btn_cash_on_delivery = findViewById(R.id.btn_cash_on_delivery);
         btn_online_payment = findViewById(R.id.btn_online_payment);
+        btn_back = findViewById(R.id.btn_back);
     }
 
     @Override
@@ -71,6 +74,14 @@ public class PaymentActivity extends AppCompatActivity {
                 submitOrder(new ApiService(PaymentActivity.this) , PAYMENT_METHOD_COD);
             }
         });
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     public void getPaymentInfo(){
@@ -92,38 +103,42 @@ public class PaymentActivity extends AppCompatActivity {
         String mobile = edt_phone.getText().toString();
         String address = edt_address.getText().toString();
 
-        submitOrder.submitOrder(token, name, family, postalCode, mobile, address, paymentMethod, new submitOrder.submitOrderCalLBack() {
-            @Override
-            public void onSubscribe(Disposable disposable) {
-
-            }
-
-            @Override
-            public void onSuccess(BilingResponse bilingResponse) {
-                if (paymentMethod.equals("online")){
-                    Toast.makeText(PaymentActivity.this, "هم اکنون به درگاه بانکی هدایت خواهید شد", Toast.LENGTH_SHORT).show();
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW , Uri.parse(bilingResponse.getBank_gateway_url()));
-                    startActivity(browserIntent);
+        if (name.length() > 0 && family.length() > 0 && postalCode.length() > 0 && mobile.length() > 0 && address.length() > 0 ){
+            submitOrder.submitOrder(token, name, family, postalCode, mobile, address, paymentMethod, new submitOrder.submitOrderCalLBack() {
+                @Override
+                public void onSubscribe(Disposable disposable) {
 
                 }
 
-                else {
-                    Bundle bundle = getIntent().getExtras();
-                    paymentInfo = bundle.getParcelable("peyment");
+                @Override
+                public void onSuccess(BilingResponse bilingResponse) {
+                    if (paymentMethod.equals("online")){
+                        Toast.makeText(PaymentActivity.this, "هم اکنون به درگاه بانکی هدایت خواهید شد", Toast.LENGTH_SHORT).show();
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW , Uri.parse(bilingResponse.getBank_gateway_url()));
+                        startActivity(browserIntent);
 
-                    Toast.makeText(PaymentActivity.this, "سفارش با موفقیت ثبت شد", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(PaymentActivity.this , PaymentResultActivity.class);
-                    intent.putExtra("price" , paymentInfo.getPayablePrice() );
-                    startActivity(intent);
+                    }
+
+                    else {
+                        Bundle bundle = getIntent().getExtras();
+                        paymentInfo = bundle.getParcelable("peyment");
+
+                        Toast.makeText(PaymentActivity.this, "سفارش با موفقیت ثبت شد", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(PaymentActivity.this , PaymentResultActivity.class);
+                        intent.putExtra("price" , paymentInfo.getPayablePrice() );
+                        startActivity(intent);
+                    }
                 }
-            }
 
-            @Override
-            public void onError(Throwable throwable) {
-                Toast.makeText(PaymentActivity.this, "" + throwable, Toast.LENGTH_SHORT).show();
-                Log.e("PaymentAct", "onError: " + throwable);
-            }
-        });
+                @Override
+                public void onError(Throwable throwable) {
+                    Toast.makeText(PaymentActivity.this, "مشکلی حین بارگزاری پیش آماده است، دسترسی به اینترنت را چک کنید!" , Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else {
+            Toast.makeText(this, "لطفا اطلاعات خواسته شده را به صورت کامل وارد کنید.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

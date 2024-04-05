@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_marginBottom="12dp"
+    android:layoutDirection="rtl"
+    android:background="@drawable/bg_cart_item">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/nameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:text="امیرحسین"
+            android:textAlignment="textStart"/>
+
+        <TextView
+            android:id="@+id/familyTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginRight="4dp"
+            android:text="تشکری"
+            android:layoutDirection="rtl"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_weight="1"
+            android:textAlignment="viewStart"/>
+
+        <TextView
+            android:id="@+id/priceTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginRight="4dp"
+            android:text="349.000 تومان"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dateTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:layout_marginRight="4dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="24 متری انقلاب ، انقلاب 27 ، پلاک 43"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/addressTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:layout_marginRight="4dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="24 متری انقلاب ، انقلاب 27 ، پلاک 43"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/orderItemsTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:layout_marginRight="4dp"
+        android:text="4 محصول خریداری شد."
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">NikeStore</string>
     <string name="home">خانه</string>
+    <string name="search">جستجو</string>
     <string name="cart">سبد خرید</string>
     <string name="profile">اطلاعات کاربری</string>
     <string name="latest">جدیدترین ها</string>
@@ -53,11 +54,11 @@
 
     //PaymentActivity
     <string name="paymentAndShiping">انتخاب تحویل گیرنده و شیوه پرداخت</string>
-    <string name="name">نام</string>
-    <string name="family">نام خانوادگی</string>
-    <string name="postalCode">کد پستی</string>
-    <string name="phone">شماره تماس</string>
-    <string name="address">آدرس تحویل گیرنده</string>
+    <string name="name">نام*</string>
+    <string name="family">نام خانوادگی*</string>
+    <string name="postalCode">کد پستی*</string>
+    <string name="phone">شماره تماس*</string>
+    <string name="address">آدرس تحویل گیرنده*</string>
     <string name="cashOnDelivery">پرداخت در محل</string>
     <string name="onlinePayment">پرداخت آنلاین</string>
 
@@ -74,9 +75,12 @@
     <string name="paymentGateaway">درگاه پرداخت</string>
 
     //Profile Fragment
+    <string name="guestText">کاربر میهمان</string>
     <string name="favoriteList">لیست علاقمندی ها</string>
+    <string name="productNotFound">محصولی در این لیست یافت نشد!</string>
     <string name="orderHistory">سوابق سفارش</string>
     <string name="logOut">خروج از حساب کاربری</string>
+    <string name="login">ورود به حساب کاربری</string>
     <string name="youShouldLogin">برای استفاده ازین بخش باید وارد حساب کاربری خود شوید!</string>
 
 </resources>

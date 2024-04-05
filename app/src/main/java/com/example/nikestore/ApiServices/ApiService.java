@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import androidx.room.Index;
+
 import com.example.nikestore.Model.AddCommentResponse;
 import com.example.nikestore.Model.AddToCartResponse;
 import com.example.nikestore.Model.Banner;
@@ -13,8 +15,7 @@ import com.example.nikestore.Model.CartResponse;
 import com.example.nikestore.Model.CheckoutResponse;
 import com.example.nikestore.Model.Comment;
 import com.example.nikestore.Model.MessageResponse;
-import com.example.nikestore.Model.OrderItem;
-import com.example.nikestore.Model.OrderItemList;
+import com.example.nikestore.Model.Order;
 import com.example.nikestore.Model.Product;
 import com.example.nikestore.Model.TokenResponse;
 import com.example.nikestore.SharedPreferences.TokenContainer;
@@ -103,7 +104,7 @@ public class ApiService {
         return retrofitApiClass.leaveComment(token , jsonObject);
     }
 
-    public Single<OrderItemList> getOrderList(String token){
+    public Single<List<Order>> getOrderList(String token){
         return retrofitApiClass.getOrderList(token);
     }
 

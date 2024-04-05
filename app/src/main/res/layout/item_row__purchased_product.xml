@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:layoutDirection="rtl"
+    android:background="@color/white">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:id="@+id/img_product_layout"
+        app:cardCornerRadius="12dp">
+
+        <ImageView
+            android:id="@+id/productImg"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:scaleType="centerCrop"
+            android:layout_alignParentRight="true"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/detail_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_toLeftOf="@+id/img_product_layout">
+
+        <TextView
+            android:id="@+id/productTitleTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textSize="14sp"
+            android:textAppearance="?textAppearanceBody1"
+            android:text="نام محصول"/>
+
+        <TextView
+            android:id="@+id/purchasedProductCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?textAppearanceBody2"
+            android:layout_marginTop="12dp"
+            android:text="2 عدد خریداری شده"/>
+
+        <TextView
+            android:id="@+id/currentCostTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textAppearance="?textAppearanceBody1"
+            android:textColor="@color/black"
+            android:text="TextView"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/prevCostLay"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/darkGray"
+        android:layout_below="@+id/detail_layout" />
+
+</RelativeLayout>

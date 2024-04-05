@@ -3,6 +3,7 @@ package com.example.nikestore.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -55,7 +56,7 @@ public class CartFragment extends Fragment implements CartAdapter.changeItemCoun
     LottieAnimationView loadingLottie;
     ImageView illImage;
     ExtendedFloatingActionButton payBtn;
-    Button loginBtn;
+    AppCompatButton loginBtn;
 
     TextView totalPriceTv , shippingCostTv , payablePriceTv , emptyStateTv;
     RecyclerView cartProductRv;
@@ -182,8 +183,7 @@ public class CartFragment extends Fragment implements CartAdapter.changeItemCoun
 
             @Override
             public void onError(Throwable e) {
-                Toast.makeText(getContext(), "" + e, Toast.LENGTH_SHORT).show();
-                Log.i("getCartItems", "onError: " + e);
+                Toast.makeText(getContext(), "مشکلی حین بارگزاری پیش آماده است، دسترسی به اینترنت را چک کنید!" , Toast.LENGTH_SHORT).show();
             }
         });
     }

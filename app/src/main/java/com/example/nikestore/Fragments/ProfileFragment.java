@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.nikestore.R;
@@ -28,21 +29,20 @@ public class ProfileFragment extends Fragment {
     String token , refresh_token;
     Button loginBtn;
 
-    TextView emptyStateTv , emailTv;
-    LinearLayout favoriteProductsBtn , ordersHistoryBtn , logOutBtn;
-    LinearLayout cart_item_layout , illLayout;
-    ImageView illImage;
+    TextView emailTv , logTv;
+    ImageView lockImg;
+    LinearLayout favoriteProductsBtn , ordersHistoryBtn , logBtn ;
+    LinearLayout cart_item_layout;
 
     public void cast(){
         favoriteProductsBtn = view.findViewById(R.id.favoriteProductsBtn);
         ordersHistoryBtn = view.findViewById(R.id.ordersHistoryBtn);
-        logOutBtn = view.findViewById(R.id.logOutBtn);
+        logBtn = view.findViewById(R.id.logBtn);
         cart_item_layout = view.findViewById(R.id.cart_item_layout);
-        illLayout = view.findViewById(R.id.illLayout);
-        illImage = view.findViewById(R.id.illImage);
-        emptyStateTv = view.findViewById(R.id.emptyStateTv);
+        lockImg = view.findViewById(R.id.lockImg);
         loginBtn = view.findViewById(R.id.loginBtn);
         emailTv = view.findViewById(R.id.emailTv);
+        logTv = view.findViewById(R.id.logTv);
     }
 
     @Override
@@ -60,13 +60,32 @@ public class ProfileFragment extends Fragment {
             Authorize(token , refresh_token);
         }
 
-        logOutBtn.setOnClickListener(new View.OnClickListener() {
+        ordersHistoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tokenContainer.seveTokens("" , "");
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container , new LoginFragment());
-                transaction.commit();
+                if (tokenContainer.getToken().equals("") && tokenContainer.getRefreshToken().equals("")){
+                    Toast.makeText(getActivity(), "" + R.string.youShouldLogin, Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getActivity() , SettingPageActivity.class);
+                    intent.putExtra("settingPage" , 1);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        logBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tokenContainer.getToken().equals("") && tokenContainer.getRefreshToken().equals("")){
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container , new LoginFragment());
+                    transaction.commit();
+                } else {
+                    tokenContainer.seveTokens("" , "");
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container , new LoginFragment());
+                    transaction.commit();
+                }
             }
         });
 
@@ -84,19 +103,10 @@ public class ProfileFragment extends Fragment {
 
     public void Authorize(String token , String refresh_token){
         if (token.equals("Bearer ") && refresh_token.equals("Bearer ")){
-            cart_item_layout.setVisibility(View.GONE);
-            illLayout.setVisibility(View.VISIBLE);
-            emptyStateTv.setText(R.string.youShouldLogin);
-            loginBtn.setVisibility(View.VISIBLE);
-            loginBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment_container , new LoginFragment());
-                    transaction.commit();
-                }
-            });
-        }
+            emailTv.setText(R.string.guestText);
+            lockImg.setVisibility(View.VISIBLE);
+            logTv.setText(R.string.login);
+         }
     }
 
 }

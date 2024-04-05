@@ -21,6 +21,9 @@ public interface ProductDataBase {
     @Query("select * from products")
     List<Product> getProducts();
 
+    @Query("SELECT * FROM products WHERE title = :title")
+    Product searchProduct(String title);
+
     @Delete
     int delete(Product product);
 

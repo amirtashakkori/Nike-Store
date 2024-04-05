@@ -9,8 +9,7 @@ import com.example.nikestore.Model.CartResponse;
 import com.example.nikestore.Model.CheckoutResponse;
 import com.example.nikestore.Model.Comment;
 import com.example.nikestore.Model.MessageResponse;
-import com.example.nikestore.Model.OrderItem;
-import com.example.nikestore.Model.OrderItemList;
+import com.example.nikestore.Model.Order;
 import com.example.nikestore.Model.Product;
 import com.example.nikestore.Model.TokenResponse;
 import com.google.gson.JsonObject;
@@ -29,6 +28,9 @@ public interface RetrofitApiClass {
     @GET("product/list")
     Single<List<Product>> getProducts(@Query("sort") String sort);
 
+    @GET("product/search")
+    Single<List<Product>> search(@Query("q") String q);
+
     @GET("banner/slider")
     Single<List<Banner>> getBanners();
 
@@ -38,8 +40,8 @@ public interface RetrofitApiClass {
     @POST("comment/add")
     Single<AddCommentResponse> leaveComment(@Header("Authorization") String token , @Body JsonObject jsonObject);
 
-    @POST("order/list")
-    Single<OrderItemList> getOrderList(@Header("Authorization") String token);
+    @GET("order/list")
+    Single<List<Order>> getOrderList(@Header("Authorization") String token);
 
     @POST("auth/token")
     Single<TokenResponse> login(@Body JsonObject jsonObject);
@@ -70,8 +72,5 @@ public interface RetrofitApiClass {
 
     @GET("order/checkout")
     Single<CheckoutResponse> checkOut(@Header("Authorization") String token , @Query("order_id") int orderId);
-
-    @GET("/product/search")
-    Single<List<Product>> search(@Query("q") String q);
 
 }

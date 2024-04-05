@@ -15,16 +15,6 @@
         app:cardCornerRadius="12dp">
 
         <ImageView
-            android:id="@+id/addToFavoritesBtn"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_favorites" />
-
-        <ImageView
             android:id="@+id/productImg"
             android:layout_width="110dp"
             android:layout_height="110dp"
@@ -78,7 +68,7 @@
         </LinearLayout>
 
         <FrameLayout
-            android:id="@+id/prevCostTv"
+            android:id="@+id/prevCostLay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -88,7 +78,7 @@
             android:layout_below="@+id/wehave">
 
             <TextView
-                android:id="@+id/txt_product_previous_price"
+                android:id="@+id/prevCostTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?textAppearanceBody2"
@@ -113,7 +103,7 @@
             android:textColor="@color/green"
             android:text="TextView"
             android:layout_alignParentLeft="true"
-            android:layout_below="@id/prevCostTv"/>
+            android:layout_below="@id/prevCostLay"/>
 
     </RelativeLayout>
 

@@ -27,7 +27,6 @@ public class PaymentResultActivity extends AppCompatActivity {
     checkout checkout;
     TokenContainer tokenContainer;
     Disposable d;
-    int order_id;
 
     public void cast(){
         btn_back_to_home = findViewById(R.id.btn_back_to_home);
@@ -62,6 +61,15 @@ public class PaymentResultActivity extends AppCompatActivity {
             }
         });
 
+        btn_purchase_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PaymentResultActivity.this , SettingPageActivity.class);
+                intent.putExtra("settingPage" , 1);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -92,8 +100,7 @@ public class PaymentResultActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable e) {
-                Toast.makeText(PaymentResultActivity.this, "" + e, Toast.LENGTH_SHORT).show();
-                Log.i("checkout", "onError: " + e);
+                Toast.makeText(PaymentResultActivity.this , "مشکلی حین بارگزاری پیش آماده است، دسترسی به اینترنت را چک کنید!" , Toast.LENGTH_SHORT).show();
             }
         });
     }

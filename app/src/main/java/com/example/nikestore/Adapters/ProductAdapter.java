@@ -67,7 +67,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.item> {
     }
 
     public class item extends RecyclerView.ViewHolder{
-        ImageView productImg , addToFavoritesBtn;
+        ImageView productImg ;
         TextView productTitleTv , prevCostTv ,currentCostTv;
         public item(@NonNull View itemView) {
             super(itemView);
@@ -75,35 +75,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.item> {
             productTitleTv = itemView.findViewById(R.id.productTitleTv);
             prevCostTv = itemView.findViewById(R.id.prevCostTv);
             currentCostTv = itemView.findViewById(R.id.currentCostTv);
-            addToFavoritesBtn = itemView.findViewById(R.id.addToFavoritesBtn);
         }
 
         public void bindProduct(Product product){
             Picasso.get().load(product.getImage()).into(productImg);
             productTitleTv.setText(product.getTitle());
-            prevCostTv.setText(product.getPrevious_price());
-            currentCostTv.setText(product.getPrice());
+            DecimalFormat decimalFormat = new DecimalFormat("0,000");
+            prevCostTv.setText(decimalFormat.format(product.getPrevious_price())+" تومان");
+            currentCostTv.setText(decimalFormat.format(product.getPrice())+" تومان");
 
-            if (product.isFavorite())
-                addToFavoritesBtn.setImageResource(R.drawable.ic_favorite_full);
-            else
-                addToFavoritesBtn.setImageResource(R.drawable.ic_favorites);
-
-            addToFavoritesBtn.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (product.isFavorite()){
-                        addToFavoritesBtn.setImageResource(R.drawable.ic_favorites);
-                        product.setFavorite(true);
-                        long id = dao.addToList(product);
-                        if (id > -1)
-                            Toast.makeText(c, "به لیست علاقمندی افزوده شد", Toast.LENGTH_SHORT).show();
-                    } else {
-                        addToFavoritesBtn.setImageResource(R.drawable.ic_favorite_full);
-                        int delete = dao.delete(product);
-                        if (delete > 0)
-                            Toast.makeText(c, "از لیست علاقمندی ها خذف شد", Toast.LENGTH_SHORT).show();
-                    }
+                    Intent intent = new Intent(c , DetailActivity.class);
+                    intent.putExtra("product" , product);
+                    c.startActivity(intent);
                 }
             });
         }

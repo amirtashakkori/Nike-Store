@@ -17,18 +17,7 @@
         android:layout_centerHorizontal="true">
 
         <ImageView
-            android:id="@+id/btn_add_favorite"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_favorites"
-            android:elevation="2dp"/>
-
-        <ImageView
-            android:id="@+id/img_product"
+            android:id="@+id/productImg"
             android:layout_width="300dp"
             android:layout_height="300dp"
             tools:srcCompat="@tools:sample/avatars"
@@ -37,7 +26,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/txt_product_name"
+        android:id="@+id/productTitleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -51,7 +40,7 @@
 
     <LinearLayout
         android:id="@+id/wehave"
-        android:layout_below="@id/txt_product_name"
+        android:layout_below="@id/productTitleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -77,7 +66,7 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/txt_product_previous_price_layout"
+        android:id="@+id/prevCostLay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -85,7 +74,7 @@
         android:layout_centerHorizontal="true">
 
         <TextView
-            android:id="@+id/txt_product_previous_price"
+            android:id="@+id/prevCostTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?textAppearanceBody2"
@@ -101,22 +90,22 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/txt_product_current_price"
+        android:id="@+id/currentCostTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:textAppearance="?textAppearanceBody1"
         android:text="TextView"
         android:textColor="@color/green"
-        android:layout_below="@id/txt_product_previous_price_layout"
+        android:layout_below="@id/prevCostLay"
         android:layout_centerHorizontal="true"
-        app:layout_constraintStart_toStartOf="@+id/txt_product_previous_price_layout"
-        app:layout_constraintTop_toBottomOf="@+id/txt_product_previous_price_layout" />
+        app:layout_constraintStart_toStartOf="@+id/prevCostLay"
+        app:layout_constraintTop_toBottomOf="@+id/prevCostLay" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="24dp"
-        android:background="?dividerColor"
-        android:layout_below="@+id/txt_product_current_price" />
+        android:background="@color/darkGray"
+        android:layout_below="@+id/currentCostTv" />
 </RelativeLayout>

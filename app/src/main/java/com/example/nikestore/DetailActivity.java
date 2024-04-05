@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.example.nikestore.Adapters.CommentAdapter;
 import com.example.nikestore.ApiServices.ApiService;
+import com.example.nikestore.DataBase.ProductDataBase;
+import com.example.nikestore.DataBase.ProductDataBaseClass;
 import com.example.nikestore.Model.AddCommentResponse;
 import com.example.nikestore.Model.AddToCartResponse;
 import com.example.nikestore.Model.Comment;
@@ -47,8 +49,9 @@ public class DetailActivity extends AppCompatActivity {
     List<Comment> commentList;
 
     ApiService apiService;
+    ProductDataBase dao;
     Disposable disposable , disposable1;
-    Product product;
+    Product product , searchedProduct;
     TokenContainer tokenContainer;
 
     Bundle bundle;
@@ -73,6 +76,7 @@ public class DetailActivity extends AppCompatActivity {
         cast();
         tokenContainer = new TokenContainer(this);
         apiService = new ApiService(this);
+        dao = ProductDataBaseClass.getAppDataBase(this).getDataBaseDao();
         String token = tokenContainer.getToken();
         bundle = getIntent().getExtras();
 
@@ -83,6 +87,12 @@ public class DetailActivity extends AppCompatActivity {
             DecimalFormat decimalFormat = new DecimalFormat("0,000");
             prevPriceTv.setText(decimalFormat.format(product.getPrevious_price()) + " تومان");
             currentPriceTv.setText(decimalFormat.format(product.getPrice()) + " تومان");
+
+            searchedProduct = dao.searchProduct(product.getTitle());
+            if (searchedProduct != null)
+                favoriteBtn.setImageResource(R.drawable.ic_favorite_full);
+            else
+                favoriteBtn.setImageResource(R.drawable.ic_favorites);
         }
 
         apiService.getComments(product).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new SingleObserver<List<Comment>>() {
@@ -105,8 +115,7 @@ public class DetailActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable e) {
-                Toast.makeText(DetailActivity.this, "Unknown Error!" + e, Toast.LENGTH_LONG).show();
-                Log.i("Detail", "onError: " + e);
+                Toast.makeText(DetailActivity.this, "مشکلی حین بارگزاری پیش آماده است، دسترسی به اینترنت را چک کنید!" , Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -179,8 +188,7 @@ public class DetailActivity extends AppCompatActivity {
 
                             @Override
                             public void onError(Throwable e) {
-                                Toast.makeText(DetailActivity.this, "Submitting your comment failed!", Toast.LENGTH_SHORT).show();
-                                Toast.makeText(DetailActivity.this, "" + e, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DetailActivity.this, "مشکلی حین بارگزاری پیش آماده است، دسترسی به اینترنت را چک کنید!" , Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -188,6 +196,23 @@ public class DetailActivity extends AppCompatActivity {
 
                 commentDialog.setContentView(view);
                 commentDialog.show();
+            }
+        });
+
+        favoriteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (searchedProduct != null){
+                    favoriteBtn.setImageResource(R.drawable.ic_favorites);
+                    int res = dao.delete(searchedProduct);
+                    if (res > 0)
+                        Toast.makeText(DetailActivity.this, "محصول با موفقیت از لیست علاقمندی ها حذف شد!", Toast.LENGTH_SHORT).show();
+                } else {
+                    favoriteBtn.setImageResource(R.drawable.ic_favorite_full);
+                    long id = dao.addToList(product);
+                    if (id != -1)
+                        Toast.makeText(DetailActivity.this, "محصول با موفقیت به لیست علاقمندی ها اضاقه شد!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

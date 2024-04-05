@@ -162,8 +162,7 @@ public class ProductListActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable e) {
-                Toast.makeText(ProductListActivity.this, "Unknown Error!" + e, Toast.LENGTH_SHORT).show();
-                Log.i("Activity", "onError: " + e);
+                Toast.makeText(ProductListActivity.this, "مشکلی حین بارگزاری پیش آماده است، دسترسی به اینترنت را چک کنید!" , Toast.LENGTH_SHORT).show();
             }
         });
     }
