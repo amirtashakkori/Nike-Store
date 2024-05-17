@@ -118,25 +118,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        searchEdt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() > 2){
-
-                }
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
         searchEdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -150,13 +131,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
-//        searchEdt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showBackButton();
-//            }
-//        });
 
         return view;
     }
@@ -290,7 +264,9 @@ public class HomeFragment extends Fragment {
                         }
                     });
                 } else {
+                    searchListRv.setVisibility(View.GONE);
                     illLayout.setVisibility(View.VISIBLE);
+                    emptyStateTv.setVisibility(View.VISIBLE);
                     emptyStateTv.setText("عنوان مورد نظر را وارد کنید");
                 }
             }
