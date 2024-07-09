@@ -82,7 +82,7 @@
 
     <style name="TextAppearance.MyTheme.Body2" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">13sp</item>
         <!--Your custom type style here-->
     </style>
 

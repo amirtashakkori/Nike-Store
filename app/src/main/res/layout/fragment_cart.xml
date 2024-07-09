@@ -24,7 +24,6 @@
             android:layout_height="100dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            android:tint="@color/blue"
             android:scaleType="centerCrop"
             app:lottie_rawRes="@raw/loading_lottie"
             android:layout_gravity="center"/>
@@ -67,7 +66,7 @@
             android:gravity="center"
             android:textSize="14sp"
             android:visibility="gone"
-            android:textColor="@color/white"
+            android:textColor="#FFF"
             android:background="@drawable/bg_login_btn"
             android:text="@string/Login"
             android:layout_marginTop="24dp"
@@ -88,13 +87,12 @@
             android:layout_height="match_parent"
             android:paddingRight="16dp">
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/cart"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                android:textSize="14sp" />
+                android:layout_height="56dp"
+                android:src="@drawable/ic_nike_logo"
+                android:layout_centerHorizontal="true"
+                app:tint="?colorSecondary" />
 
         </RelativeLayout>
 
@@ -111,47 +109,47 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="20dp"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
+            android:visibility="visible">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cartProductRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="16dp"
-                android:paddingRight="16dp"
-                android:paddingLeft="16dp"
-                android:paddingBottom="100dp"
-                android:visibility="visible">
+                android:layout_marginTop="16dp"
+                android:paddingTop="8dp"
+                android:paddingRight="12dp"
+                android:paddingLeft="12dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/cartProductRv"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/darkGray"
+                    android:layout_below="@+id/shippingCostTv"
+                    android:layout_marginTop="12dp"/>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"/>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
-                    android:paddingLeft="12dp"
-                    android:paddingBottom="16dp"
-                    android:background="@drawable/bg_receipt_info">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp">
 
                     <TextView
-                        android:id="@+id/txt_price_info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/purchaseDetail"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="@string/totalPrice"
                         android:textColor="@color/black"
-                        android:layout_marginTop="24dp"
-                        android:layout_below="@+id/txt_price_info"/>
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/totalPriceTv"
@@ -159,24 +157,22 @@
                         android:layout_height="wrap_content"
                         android:text="0 تومان"
                         android:textColor="@color/black"
-                        android:layout_marginTop="24dp"
-                        android:layout_gravity="left"
-                        android:layout_alignParentLeft="true"
-                        android:layout_below="@+id/txt_price_info"/>
+                        android:layout_gravity="left"/>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/darkGray"
-                        android:layout_below="@+id/totalPriceTv"
-                        android:layout_marginTop="12dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="@string/shippingCost"
+                        android:layout_weight="1"
                         android:textColor="@color/black"
-                        android:layout_marginTop="24dp"
                         android:layout_below="@+id/totalPriceTv"/>
 
                     <TextView
@@ -184,24 +180,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0 تومان"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="24dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_below="@+id/totalPriceTv"/>
+                        android:textColor="@color/black"/>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/darkGray"
-                        android:layout_below="@+id/shippingCostTv"
-                        android:layout_marginTop="12dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="@string/payablePrice"
+                        android:layout_weight="1"
                         android:textColor="@color/black"
-                        android:layout_marginTop="24dp"
                         android:layout_below="@+id/shippingCostTv"/>
 
                     <TextView
@@ -209,12 +203,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0 تومان"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="24dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_below="@+id/shippingCostTv"/>
+                        android:textColor="@color/black"/>
 
-                </RelativeLayout>
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/payBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center"
+                    android:text="@string/pay"
+                    android:textColor="#FFF"
+                    android:visibility="gone"
+                    android:background="@drawable/bg_buttons"/>
 
             </LinearLayout>
 
@@ -222,17 +225,5 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/payBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:gravity="center"
-        android:text="@string/pay"
-        android:visibility="gone"
-        android:backgroundTint="@color/blue"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

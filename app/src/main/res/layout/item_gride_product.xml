@@ -11,7 +11,7 @@
     android:background="@color/white">
 
     <androidx.cardview.widget.CardView
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="12dp"
         android:id="@+id/card_img"
         android:layout_width="match_parent"
         android:layout_height="145dp">

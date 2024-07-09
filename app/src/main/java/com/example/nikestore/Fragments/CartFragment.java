@@ -55,7 +55,7 @@ public class CartFragment extends Fragment implements CartAdapter.changeItemCoun
     LinearLayout loadingAnimLayout , illLayout;
     LottieAnimationView loadingLottie;
     ImageView illImage;
-    ExtendedFloatingActionButton payBtn;
+    AppCompatButton payBtn;
     AppCompatButton loginBtn;
 
     TextView totalPriceTv , shippingCostTv , payablePriceTv , emptyStateTv;
